@@ -11,10 +11,10 @@
 	<groupId>com.tienda</groupId>
 	<artifactId>tienda</artifactId>
 	<version>1</version>
-	<name>tienda</name>
+	<name>Tienda</name>
 	<description>Proyecto web para Desarrollo y Patrones</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
