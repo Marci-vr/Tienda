@@ -13,7 +13,7 @@ public class Cliente {
     @Entity
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(Strategy = GenerationType.IDENTITY)
     private Long idCliente;
