@@ -4,42 +4,41 @@
     <head>
         <title>TechShop</title>
         <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header th:replace="layout/plantilla :: header"/>
-
-        <div>Saludos</div>
-        <p th:text="${mensaje}"></p> 
-        <p>[[${mensaje}]]</p>
-
-        <h2>Listado de Clientes</h2>
-        <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
-        <div th:if="${clientes!= null and !clientes.empty}">
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Listado de articulos</h2>
+        <a th:href="@{/articulo/nuevo}">Nuevo Articulo</a>
+        <div th:if="${articulos != null and !articulos.empty}">
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
+                        <th>Descripcion</th>
+                        <th>Detalle</th>
+                        <th>Precio</th>
+                        <th>Existencias</th>
+                        <th>Activo</th>
                         <th>Eliminar</th>
                         <th>Modificar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="cliente: ${clientes}">
-                        <td>[[${cliente.nombre}]]</td>
-                        <td>[[${cliente.apellidos}]]</td>
-                        <td>[[${cliente.correo}]]</td>
-                        <td><a th:href="@{/eliminarCliente/}+ ${cliente.idCliente}">Eliminar</td>
-                        <td><a th:href="@{/modificarCliente/}+ ${cliente.idCliente}">Modificar</td>
+                    <tr th:each="articulo : ${articulos}">
+                        <td th: text="${articulo.descripcion}"></td>
+                        <td th: text="${articulo.detalle}"></td>
+                        <td th: text="${#numbers.formatDecimal(articulo.precio, 3, 2)}" style="text-align:right"></td>
+                        <td th: text="${articulo.existencias}" style="text-align: center"></td> 
+                        <td><input type="checkbox" name="activo" th: checked="${articulo.activo}" disable="true"></td>
+                        <td><a th:href="@{/eliminarArticulo/} + ${articulo.idArticulo}">Eliminar</a></td>
+                        <td><a th:href="@{/modificarArticulo/} + ${articulo.idArticulo}">Modificar</a></td>
                     </tr>
                 </tbody>
-            </table> 
+            </table>
         </div>
-        <div th:if="${clientes== null or clientes.empty}">
-            <h2>No se tienen clientes que mostrar!</h2>
+        <div th:if="${articulos == null or articulos.empty}">
+            No se tienen articulos que mostrar!
         </div>
-        <footer th:replace+layout plantilla :: footer"/>
+        <footer th:replace="layout/plantilla :: footer"/>
     </body>
 </html>

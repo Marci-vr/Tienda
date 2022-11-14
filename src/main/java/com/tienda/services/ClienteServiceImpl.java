@@ -18,7 +18,7 @@ public class ClienteServiceImpl implements ClienteService {
     // Si ya esta en memoria se use ese... sino se crea (Patron singleton)
     @Autowired
     private ClienteDao clienteDao;
-    
+
     // Se utiliza una anotacion Autowired para el objeto ClienteDao
     // Si ya esta en memoria se use ese... sino se crea (Patron singleton)
     @Autowired
@@ -44,12 +44,12 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     @Transactional
     public void save(Cliente cliente) {
-        Credito credito =cliente.getCredito();
-        
-        credito=creditoDao.save(credito);
-        
+        Credito credito = cliente.getCredito();
+
+        credito = creditoDao.save(credito);
+
         cliente.setCredito(credito);
-                
+
         clienteDao.save(cliente);
     }
 
@@ -58,5 +58,10 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional
     public void delete(Cliente cliente) {
         clienteDao.delete(cliente);
+    }
+
+    @Override
+    public Cliente getClientePorApellido(String apellidos) {
+        return clienteDao.findbyApellidos(apellidos);
     }
 }

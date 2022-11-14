@@ -9,15 +9,17 @@ public interface ClienteService {
 
     //Retorna la lista de clientes
     public List<Cliente> getClientes();
-    
+
     //Dado un cliente.id se busca en la tabla y 
     //se retorna todo el objeto Cliente
     public Cliente getCliente(Cliente cliente);
-    
+
     // Si cliente.id tiene un valor, se busca y se actualiza
     // Si cliente.id no tiene  valor, se inserta onbjeto en la tabla
     public void save(Cliente cliente);
-    
+
     //Elimina el registro que tiene un id igual a cli8ente.id
     public void delete(Cliente cliente);
+
+    public Cliente getClientePorApellido(String apellidos);
 }

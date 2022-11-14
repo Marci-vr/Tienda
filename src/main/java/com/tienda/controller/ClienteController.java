@@ -13,14 +13,14 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-    
-     @GetMapping("/cliente/listado") //ruta metodo
+
+    @GetMapping("/cliente/listado") //ruta metodo
     public String inicio(Model model) {
         var texto = "Estamos en semana 4";
         model.addAttribute("mensaje", texto);
-        
+
         var clientes = clienteService.getClientes();
-        
+        //var clientes = clienteService.getClientesPorApellido("");
         model.addAttribute("clientes", clientes);
 
         return "/cliente/listado"; // ruta pagina
@@ -37,7 +37,7 @@ public class ClienteController {
         return "redirect:/cliente/listado";
     }
 
-    @GetMapping("/cliente/modificarCliente/{idCliente}")
+    @GetMapping("/cliente/modificar/{idCliente}")
     public String modificarCliente(Cliente cliente, Model model) {
 
         cliente = clienteService.getCliente(cliente);
@@ -46,11 +46,24 @@ public class ClienteController {
         return "/cliente/modificar";
     }
 
-    @GetMapping("/cliente/eliminarCliente/{idCliente}")
+    @GetMapping("/cliente/eliminar/{idCliente}")
     public String eliminarCliente(Cliente cliente) {
 
         clienteService.delete(cliente);
 
         return "redirect:/cliente/listado";
+    }
+
+    @GetMapping("/cliente/buscar")
+    public String buscarCliente(Cliente cliente) {
+
+        return "/cliente/busqueda";
+    }
+
+    @PostMapping("/cliente/encontrarCliente")
+    public String encontrarCliente(Cliente cliente, Model model) {
+        cliente = clienteService.getClientePorApellido(cliente.getApellidos());
+        model.addAttribute("cliente", cliente);
+        return "/cliente/modificar";
     }
 }
