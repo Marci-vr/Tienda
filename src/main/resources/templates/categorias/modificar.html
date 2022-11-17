@@ -2,7 +2,7 @@
 <html
     xmlns:th="http://www.thymeleaf.org"
     xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
     </head>
@@ -11,7 +11,7 @@
         <h1>Datos de Cliente</h1>
         <a th:href="@{/}">Regresar</a>
         <hr />
-        
+
         <form th:action="@{/cliente/guardar}" method="post" th:object="${cliente}">
             <input type="hidden" name="idCliente" th:field="*{idCliente}" />
             <label for="nombre">Nombre</label>

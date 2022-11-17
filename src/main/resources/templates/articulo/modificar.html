@@ -2,7 +2,7 @@
 <html
     xmlns:th="http://www.thymeleaf.org"
     xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
             <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
@@ -10,27 +10,27 @@
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="contenido">
-        <h2>Datos de Articulo</h2>
-        <a th:href="@{/articulo/listado}">Regresar</a>
-        <br/><br/>
-        
-        <form th:action="@{/articulo/guardar}" method="post" th:object="${articulo}">
-            <input type="hidden" name="idArticulo" th:field="*{idArticulo}"/>
-            <label for="categoria">Categoria:</label>
-            <select
-            <input type="text" name="categoria" th:field="*{categoria}"/>
-            <br/>
-            <label for="apellidos">Apellidos</label>
-            <input type="text" name="apellidos" th:field="*{apellidos}" />
-            <br/>
-            <label for="correo">Correo</label>
-            <input type="email" name="correo" th:field="*{correo}" />
-            <br/>
-            <label for="telefono">Telefono</label>
-            <input type="tel" name="telefono" th:field="*{telefono}" />
-            <br/>
-            <input type="submit" name="guardar" value="Guardar" />
-        </form>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+            <h2>Datos de Articulo</h2>
+            <a th:href="@{/articulo/listado}">Regresar</a>
+            <br/><br/>
+
+            <form th:action="@{/articulo/guardar}" method="post" th:object="${articulo}">
+                <input type="hidden" name="idArticulo" th:field="*{idArticulo}"/>
+                <label for="categoria">Categoria:</label>
+                <select
+                    <input type="text" name="categoria" th:field="*{categoria}"/>
+                <br/>
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" th:field="*{apellidos}" />
+                <br/>
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" th:field="*{correo}" />
+                <br/>
+                <label for="telefono">Telefono</label>
+                <input type="tel" name="telefono" th:field="*{telefono}" />
+                <br/>
+                <input type="submit" name="guardar" value="Guardar" />
+            </form>
+            <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>
