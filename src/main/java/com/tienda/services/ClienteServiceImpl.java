@@ -62,6 +62,6 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente getClientePorApellido(String apellidos) {
-        return clienteDao.findbyApellidos(apellidos);
+        return clienteDao.findByApellidos(apellidos);
     }
 }

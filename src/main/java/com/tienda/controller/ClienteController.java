@@ -14,16 +14,19 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping("/cliente/listado") //ruta metodo
+  @GetMapping("/cliente/listado")
     public String inicio(Model model) {
-        var texto = "Estamos en semana 4";
-        model.addAttribute("mensaje", texto);
-
-        var clientes = clienteService.getClientes();
-        //var clientes = clienteService.getClientesPorApellido("");
-        model.addAttribute("clientes", clientes);
-
-        return "/cliente/listado"; // ruta pagina
+        var clientes=clienteService.getClientes();
+        
+        var limiteTotal=0;
+        for (var c: clientes) {
+            limiteTotal+=c.credito.limite;
+        }
+        model.addAttribute("limiteTotal",limiteTotal);
+        model.addAttribute("totalClientes",clientes.size());
+        
+        model.addAttribute("clientes",clientes);
+        return "/cliente/listado";
     }
 
     @GetMapping("/cliente/nuevo")
